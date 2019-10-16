@@ -2,19 +2,27 @@ package eu.attempto.simplejavaapp;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static java.util.logging.Logger.getLogger;
 
 public class LinkFinder {
-    public static ArrayList<String> getLinks(String url) {
+
+    private LinkFinder() {
+
+    }
+
+    public static List<String> getLinks(String url) {
+        if (!url.contains("https://") && !url.contains("http://") && !url.contains("file:/")) url = "https://" + url;
+        ArrayList<String> links = new ArrayList<String>();
         String content = "";
         try {
-            content = URLReader.getContent(url);
+            content = URLReader.getInstance().getContent(url);
         } catch (IOException e) {
-            e.printStackTrace();
+            getLogger("").warning(e.getLocalizedMessage());
+            return links;
         }
-        ArrayList<String> links = new ArrayList<String>();
-
         Pattern patternHref = Pattern.compile("<a\\shref=\"([^\"]+)");
         Matcher matcherHref = patternHref.matcher(content);
 

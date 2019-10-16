@@ -9,7 +9,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class URLReader {
-    public static String getContent(String szUrl) throws IOException {
+    private static URLReader single_instance = null;
+
+    // variable of type String
+    public String s;
+
+    // private constructor restricted to this class itself
+    private URLReader()
+    {
+        s = "Hello I am a string part of Singleton class";
+    }
+
+    // static method to create instance of Singleton class
+    public static URLReader getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new URLReader();
+
+        return single_instance;
+    }
+
+    public String getContent(String szUrl) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         URL url = new URL(szUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
