@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -22,13 +23,24 @@ public class URLReaderTest {
     }
 
     @Test
-    public void getContent() {
+    public void getContentForValidUrl() {
         String content = "";
         try {
             content = URLReader.getInstance().getContent(url.toString());
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.getLogger(e.getLocalizedMessage());
         }
         assertTrue("Couldn't load HTML", content.length() > 0);
+    }
+
+    @Test
+    public void getContentForInvalidUrl() {
+        String content = "";
+        try {
+            content = URLReader.getInstance().getContent("notexisting.com");
+        } catch (IOException e) {
+            Logger.getLogger(e.getLocalizedMessage());
+        }
+        assertFalse("There shouldn't be any HTML content", content.length() > 0);
     }
 }

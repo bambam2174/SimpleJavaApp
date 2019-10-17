@@ -14,7 +14,9 @@ public class LinkFinder {
     }
 
     public static List<String> getLinks(String url) {
-        if (!url.contains("https://") && !url.contains("http://") && !url.contains("file:/")) url = "https://" + url;
+        if (!url.contains("https://") && !url.contains("http://") && !url.contains("file:/")) {
+            url = "https://" + url;
+        }
         ArrayList<String> links = new ArrayList<String>();
         String content = "";
         try {

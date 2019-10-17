@@ -21,9 +21,16 @@ public class LinkFinderTest {
     }
 
     @Test
-    public void getLinks() {
+    public void getLinksForValidUrl() {
         List<String> links;
         links = LinkFinder.getLinks(url.toString());
         assertTrue("There are no links", links.size() > 0);
+    }
+
+    @Test
+    public void getLinksForInvalidUrl() {
+        List<String> links;
+        links = LinkFinder.getLinks("notexisting.com");
+        assertFalse("There are no links", links.size() > 0);
     }
 }
