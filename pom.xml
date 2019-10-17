@@ -15,5 +15,10 @@
         </dependency>
     </dependencies>
 
+    <scm>
+        <url>https://bambam2174@github.com/bambam2174/SimpleJavaApp.git</url>
+        <connection>scm:git:bambam2174@github.com/bambam2174/SimpleJavaApp.git</connection>
+        <developerConnection>scm:git:bambam2174@github.com:bambam2174/SimpleJavaApp.git</developerConnection>
+    </scm>
 
 </project>
